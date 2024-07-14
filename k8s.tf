@@ -1,7 +1,9 @@
 resource "proxmox_vm_qemu" "k8s_control" {
-  count = 1
+  count = 2
 
   name                   = "k8s-control-${count.index}"
+  vmid                   = 500 + count.index
+  target_node            = "proxmox"
   machine                = "q35"
   cpu                    = "x86-64-v2-AES"
   cores                  = 2
@@ -46,6 +48,8 @@ resource "proxmox_vm_qemu" "k8s_worker" {
   count = 2
 
   name                   = "k8s-worker-${count.index}"
+  vmid                   = 550 + count.index
+  target_node            = "proxmox"
   machine                = "q35"
   cpu                    = "x86-64-v2-AES"
   cores                  = 8
