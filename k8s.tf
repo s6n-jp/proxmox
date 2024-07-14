@@ -18,6 +18,15 @@ resource "proxmox_vm_qemu" "k8s_control" {
   define_connection_info = false
   automatic_reboot       = false
 
+  vga {
+    type = "virtio"
+  }
+
+  serial {
+    id   = 0
+    type = "socket"
+  }
+
   disks {
     scsi {
       scsi0 {
@@ -65,6 +74,15 @@ resource "proxmox_vm_qemu" "k8s_worker" {
   full_clone             = false
   define_connection_info = false
   automatic_reboot       = false
+
+  vga {
+    type = "virtio"
+  }
+
+  serial {
+    id   = 0
+    type = "socket"
+  }
 
   disks {
     scsi {
